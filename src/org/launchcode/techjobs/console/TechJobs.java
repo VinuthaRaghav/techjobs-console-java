@@ -61,7 +61,9 @@ public class TechJobs {
                 String searchTerm = in.nextLine();
 
                 if (searchField.equals("all")) {
-                    System.out.println("Search all fields not yet implemented.");
+                    //System.out.println("Search all fields not yet implemented.");
+                    printJobs(JobData.findByValue(searchTerm));
+
                 } else {
                     printJobs(JobData.findByColumnAndValue(searchField, searchTerm));
                 }
@@ -111,6 +113,20 @@ public class TechJobs {
     // Print a list of jobs
     private static void printJobs(ArrayList<HashMap<String, String>> someJobs) {
 
-        System.out.println("printJobs is not implemented yet");
+        int totalRecords = someJobs.size();
+
+        if(!(totalRecords > 0)){
+            System.out.println("No results found for the given search criteria");
+        }
+
+        for(HashMap<String,String> obj: someJobs){
+            System.out.println("*******************************");
+             for(String objKey: obj.keySet()){
+                 System.out.println(objKey + ": " +obj.get(objKey));
+             }
+            //System.out.println("*******************************");
+        }
+
+        //System.out.println("printJobs is not implemented yet");
     }
 }
